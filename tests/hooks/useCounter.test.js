@@ -33,4 +33,15 @@ describe('Pruebas en useCounter', () => {
         });
         expect(result.current.counter).toBe(defaultValue - 2*decrementValue);
     })
+    test('debe resetear el counter', () => {
+        const defaultValue = 50;
+        const decrementValue = 25;
+        const {result} = renderHook(() => useCounter(defaultValue));
+        const {decrement, reset} = result.current;
+        act(() => {
+            decrement(decrementValue);
+            reset();
+        });
+        expect(result.current.counter).toBe(defaultValue);
+    })
 })
